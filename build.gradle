@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.worldpay'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+task fatJar(type: Jar) {
+	manifest {
+		attributes("Implementation-Title": "Gradle",
+				'Main-Class': 'com.worldpay.prodmonitor.Controller')
+	}
+	baseName = 'prodmon'
+	with jar
+}
+//jar {
+//	jarArchiveName = 'prodmon'
+//	exclude "**/*.java" //excludes the rmic generated .java files
+////    exclude "logback.xml"
+//	manifest {
+//		attributes("Implementation-Title": "Gradle",
+//				'Main-Class': 'com.worldpay.prodmonitor.Controller')
+//	}
+//}
